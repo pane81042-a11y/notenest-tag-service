@@ -21,7 +21,7 @@ module.exports.tags = async (event) => {
                 return getTag(pathParameters.id);
             }
             return getAllTags();
-        case DELETE:
+        case "DELETE":
             return deleteTag(pathParameters.id);
         default:
             return response(400, { message: "Unsupported route" });
@@ -68,7 +68,7 @@ const deleteTag = async (id) => {
     await dynamodb.delete({
         TableName: TABLE_NAME,
         Key: { id },
-        ConditionExpression: "atrribute_exists(id)",
+        ConditionExpression: "attribute_exists(id)",
     }).promise();
 
     return response(200, { message: "Tag deleted", id });
