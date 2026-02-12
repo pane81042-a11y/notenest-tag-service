@@ -13,7 +13,7 @@ provider:
         - dynamodb:DeleteItem
         - dynamodb:Scan
       Resource:
-        - arn:aws:dynamodb:us-east-1:543453960196:table/NoteNestTagsTable
+        - Fn::GetAtt: [NoteNestTagsTable, Arn]
 
 functions:
   tags:
