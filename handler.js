@@ -15,6 +15,7 @@ module.exports.tags = async (event) => {
 
     switch (httpMethod) {
         case "POST":
+            if (!body) return response(400, { message: "Missing body" });
             return createTag(JSON.parse(body));
         case "GET":
             if (pathParameters) {
